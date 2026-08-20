@@ -1,0 +1,333 @@
+@import "@fontsource/playfair-display/latin-400.css";
+@import "@fontsource/playfair-display/latin-600.css";
+@import "@fontsource/playfair-display/latin-700.css";
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Logo palette: deep navy base, orange / blue / green figures */
+    --background: 219 70% 7%;
+    --foreground: 210 40% 97%;
+
+    --card: 219 60% 10%;
+    --card-foreground: 210 40% 97%;
+
+    --popover: 219 60% 10%;
+    --popover-foreground: 210 40% 97%;
+
+    --primary: 30 90% 55%;
+    --primary-foreground: 219 70% 7%;
+
+    --secondary: 219 45% 16%;
+    --secondary-foreground: 210 40% 97%;
+
+    --muted: 219 35% 19%;
+    --muted-foreground: 213 20% 70%;
+
+    --accent: 140 50% 45%;
+    --accent-foreground: 219 70% 7%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 219 35% 22%;
+    --input: 219 35% 22%;
+    --ring: 30 90% 55%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens (names kept, values now from the logo) */
+    --gold: 30 90% 55%;
+    --gold-light: 36 95% 66%;
+    --gold-dark: 24 80% 45%;
+    --navy: 219 70% 7%;
+    --navy-light: 219 55% 14%;
+    --teal: 205 85% 52%;
+    --teal-light: 205 80% 66%;
+
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(36 95% 62%) 0%, hsl(30 90% 55%) 50%, hsl(22 80% 47%) 100%);
+    --gradient-navy: linear-gradient(180deg, hsl(219 70% 7%) 0%, hsl(219 55% 14%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(219 70% 7% / 0.7) 0%, hsl(219 55% 14% / 0.5) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(219 58% 12%) 0%, hsl(219 60% 10%) 100%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(30 90% 55% / 0.18);
+    --shadow-card: 0 8px 32px hsl(219 80% 3% / 0.45);
+    --shadow-elevated: 0 20px 60px hsl(219 80% 3% / 0.55);
+
+    --sidebar-background: 219 60% 10%;
+    --sidebar-foreground: 210 40% 97%;
+    --sidebar-primary: 30 90% 55%;
+    --sidebar-primary-foreground: 219 70% 7%;
+    --sidebar-accent: 219 35% 19%;
+    --sidebar-accent-foreground: 210 40% 97%;
+    --sidebar-border: 219 35% 22%;
+    --sidebar-ring: 30 90% 55%;
+  }
+
+  .dark {
+    --background: 219 70% 7%;
+    --foreground: 210 40% 97%;
+    --card: 219 60% 10%;
+    --card-foreground: 210 40% 97%;
+    --popover: 219 60% 10%;
+    --popover-foreground: 210 40% 97%;
+    --primary: 30 90% 55%;
+    --primary-foreground: 219 70% 7%;
+    --secondary: 219 45% 16%;
+    --secondary-foreground: 210 40% 97%;
+    --muted: 219 35% 19%;
+    --muted-foreground: 213 20% 70%;
+    --accent: 140 50% 45%;
+    --accent-foreground: 219 70% 7%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 219 35% 22%;
+    --input: 219 35% 22%;
+    --ring: 30 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* NOTE: content-visibility was removed here — it caused scroll "sticking"
+     and height jumps when scrolling back up past already-rendered sections. */
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", Georgia, serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md border border-border/50;
+    background: hsl(var(--card) / 0.7);
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease,
+      background-color 0.35s ease;
+  }
+
+  .glass-card:hover {
+    border-color: hsl(var(--primary) / 0.45);
+    box-shadow: var(--shadow-card), 0 0 0 1px hsl(var(--primary) / 0.12),
+      0 18px 50px -20px hsl(var(--primary) / 0.35);
+  }
+
+  /* Slow sheen across gradient text — GPU-cheap, no layout work */
+  .text-shimmer {
+    background-size: 220% 100%;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+
+  /* Fine grain + vignette that lifts the navy out of flatness */
+  .surface-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: radial-gradient(
+      hsl(var(--foreground) / 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+  }
+
+  .glow-gold {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .hero-text-shadow {
+    text-shadow: 0 2px 18px hsl(219 70% 7% / 0.85), 0 1px 4px hsl(219 70% 7% / 0.7);
+  }
+
+  .animate-float { will-change: transform;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-up { will-change: transform, opacity;
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in { will-change: opacity;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in { will-change: transform, opacity;
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  .animate-count {
+    animation: count 2s ease-out forwards;
+  }
+
+  .animate-shimmer { will-change: background-position;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted) / 0.2) 0%,
+      hsl(var(--primary) / 0.15) 50%,
+      hsl(var(--muted) / 0.2) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.5s ease-in-out infinite;
+  }
+
+  .animate-shimmer:focus {
+    background: transparent;
+    animation: none;
+  }
+}
+
+@layer utilities {
+  /* Avoid repaint-heavy filters on touch-sized viewports. Framer Motion keeps
+     the lightweight opacity transitions while transform motion is reduced. */
+  @media (max-width: 1024px) {
+    .blur-3xl {
+      filter: none;
+      transform: none !important;
+      will-change: auto !important;
+    }
+
+    .glass-card {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: hsl(var(--card) / 0.94);
+    }
+
+    .text-shimmer,
+    .animate-float {
+      animation: none;
+    }
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(30 90% 55% / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(30 90% 55% / 0.4);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}

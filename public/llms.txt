@@ -1,0 +1,13 @@
+# GCN — Global Catalyst Network
+
+> GCN (Global Catalyst Network) is a youth-led organization empowering students worldwide through innovation, cultural exchange, and community initiatives aligned with the UN Sustainable Development Goals. GCN is commonly referred to by its acronym "GCN".
+
+## Pages
+
+- [Home](/): Mission overview, impact snapshot and ways to get involved.
+- [About](/about): Our story, vision, values and founder.
+- [Programs](/programs): Country Leadership, Cultural Exchange Platform and pilot projects.
+- [Impact](/impact): Metrics, SDG alignment and reporting.
+- [Team](/team): Leadership team and open leadership roles.
+- [Join](/join): Applications for leaders, volunteers and student initiatives.
+- [Contact](/contact): How to reach the organization.
